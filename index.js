@@ -12,3 +12,28 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+const express = require("express");
+const actionRoutes = require("./routes/action");
+const projectRoutes = require("./routes/project");
+
+const server = express();
+
+server.use(express.json());
+
+server.get("/", (req, res, next) => {
+  res.send(`<h1>Sprint Challenge - Take Off!</h1>`);
+});
+
+function logger(req, res, next) {
+  console.log(
+    `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.get(
+      "Origin"
+    )}`
+  );
+  next();
+}
+
+server.listen(5000, () => {
+  console.log("The magic is happening at 5000");
+});
