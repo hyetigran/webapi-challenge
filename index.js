@@ -25,6 +25,9 @@ server.get("/", (req, res, next) => {
   res.send(`<h1>Sprint Challenge - Take Off!</h1>`);
 });
 
+server.use("/api/project", projectRoutes);
+server.use("/api/action", actionRoutes);
+
 function logger(req, res, next) {
   console.log(
     `[${new Date().toISOString()}] ${req.method} to ${req.url} from ${req.get(

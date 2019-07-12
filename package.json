@@ -28,6 +28,7 @@
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {
+    "eslint": "6.0.1",
     "knex-cleaner": "^1.1.4",
     "nodemon": "1.19.1"
   }
