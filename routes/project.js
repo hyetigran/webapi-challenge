@@ -15,7 +15,20 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get("/", (req, res) => {});
+router.post("/:id/action", (req, res) => {
+  const { params, body } = req;
+  Projects.getProjectActions(params.id)
+    .then(result => {
+      console.log(result[0].id);
+      console.log(body);
+      const actionData = { ...body, project_id: params.id };
+      const newAction = Actions.insert(actionData);
+      res.status(201).json(newAction);
+    })
+    .catch(err => {
+      res.status(500).json({ errorMessage: "Server errror" });
+    });
+});
 
 router.post("/", (req, res) => {
   const project = req.body;
